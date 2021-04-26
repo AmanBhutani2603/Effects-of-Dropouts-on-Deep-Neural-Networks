@@ -3,14 +3,6 @@
 The main goal of the project is to study the effects of dropouts on the two specific fields of Deep Learning i.e Image Classification and Text Classification in order to achieve this goal we focus on the two main areas of a Neural Network namely “Effects on Model Parameters”, and “Effects on Feature Learning”. Model Parameters include the parameters based on which the performance of the model is judged here we have included six model features in our study namely Accuracy, Loss, Precision, Recall, ROC-AUC, and Learning Curve. 	In order to study the effects on feature learning, we use the concept of LIME(Locally Interpretable Model Agnostic Explanations). LIME in essence tells for a trained model that given a prediction made by the model what were the reasons for it to reach a particular decision, it treats any model fed to it as a black-box and for a given data sample it twerks the parameters of the model to record the effects on the prediction made by the model and hence tries to predict which parameters for a given sample were most important in giving a prediction. 
 
 For Image Classification, we used MNIST and CIFAR-10 datasets which are Grayscale and RGB datasets respectively. And for Text Classification, we have used the IMDB Review dataset. Various experimental setups were created in order to study the above-mentioned effects but in the big picture following were the steps taken to conduct the studies:
-Create the model pertaining to the dataset and whose features on which effects are to be studied i.e Feed-Forward or Convolutional Neural Networks
-Models created range from the dropout rates 0.0 to 0.9
-Models are trained on the needed dataset and its effects on the Learning curve are recorded
-During Test-Time analysis other model parameters are recorded to study effects on them
-LIME is used if needed to study the features most effective in the predictions made and draw relations between interpretability and dropout rates.
-
-
-For Image Classification, we used MNIST and CIFAR-10 datasets which are Grayscale and RGB datasets respectively. And for Text Classification, we have used the IMDB Review dataset. Various experimental setups were created in order to study the above-mentioned effects but in the big picture following were the steps taken to conduct the studies:
 
    1. Create the model pertaining to the dataset and whose features on which effects are to be studied i.e Feed-Forward or Convolutional Neural Networks
    2. Models created range from the dropout rates 0.0 to 0.9
