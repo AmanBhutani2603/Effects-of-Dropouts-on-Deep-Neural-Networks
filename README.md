@@ -9,42 +9,39 @@ Models are trained on the needed dataset and its effects on the Learning curve a
 During Test-Time analysis other model parameters are recorded to study effects on them
 LIME is used if needed to study the features most effective in the predictions made and draw relations between interpretability and dropout rates.
 
-**Image Classification**
 
-   **For MNIST Dataset**
+For Image Classification, we used MNIST and CIFAR-10 datasets which are Grayscale and RGB datasets respectively. And for Text Classification, we have used the IMDB Review dataset. Various experimental setups were created in order to study the above-mentioned effects but in the big picture following were the steps taken to conduct the studies:
+
+   1. Create the model pertaining to the dataset and whose features on which effects are to be studied i.e Feed-Forward or Convolutional Neural Networks
+   2. Models created range from the dropout rates 0.0 to 0.9
+   3. Models are trained on the needed dataset and its effects on the Learning curve are recorded
+   4. During Test-Time analysis other model parameters are recorded to study effects on them
+   5. LIME is used if needed to study the features most effective in the predictions made and draw relations between interpretability and dropout rates.
+
+**Results and Discussions**
+      
+After conducting the above experiments following are the results on which we reach:
+
+1. **For Convolutional Networks:**	
+
+   **CIFAR - 10:** 
+
+   The most suitable dropout rate to use in this case is p = 0.3, since it gave the best    value for model parameters in comparison to the rest of the rates in the given range of 0.0 to 0.9
+	
+   **MNIST:** 
+
+   The most suitable dropout rate to use in this case is p = 0.4, since it gave the best value for a majority of model parameters including accuracy, precision, and ROC-AUC. According to the learning curve the best fit was of the model with p = 0.6.
+
+2. **For Feed-Forward Networks:**
+
+   **MNIST:** 
    
-  In order to study the effects of dropouts for the MNIST dataset, both Feed-Forward and Convolutional Neural Networks were used. To pre-process the dataset the labels of the   images in both training and testing datasets were converted into categorical variables and hence the output array size for the train and test set were 50,000 x 10 and 10,000 x 10 respectively. The pixel data of the image ranged from 0 to 255 and hence to efficiently train the model pixel values were normalized between 0 to 1.
+   The most suitable dropout rate in this case is p = 0.2 as it gave the best fit according to the learning curve and also the least loss. Other model parameters had variable optimum dropout rates but always remained in the range of 0.1 to 0.3.
+
+3. When the models are trained with and without dropout for the same number of steps but with a varying batch size and epochs adjusted according to it, even though the accuracy in case of models with dropout is lower than the other, it is observed that the jump in the accuracy with increase in batch size is greater in the case of models with dropout.
+
+4. In case of Text Classification it was observed that the model was very complex for the dataset chosen and therefore without dropout the model was overfitting the dataset and gave the best accuracy and the fit when most of the neurons were lost at very high dropout rates. In such cases applying dropouts might not be a remedy towards over fitting as the model should be made less complex in terms of its architecture according to the dataset.
+
+5. On studying the effects on feature learning it was observed that given a model adheres to our assumptions it was evident from the explanations of the surrogate models that as the dropouts were increasing the interpretability of the model was increasing in the case of both CIFAR-10 and MNIST.
 
 
-  **Effects on Model Parameters of CNN**
-  
-  On training the models on the MNIST dataset the following results were obtained on the convolutional neural network:
-	    
-   1. For learning curve: It was observed that the model created better fit with the increase in the dropout rate until p = 0.3, after reaching a threshold the model became less complex and the gap between the plots of training and cross-validation accuracy increased and the accuracy on the training dataset decreased as the dropout rate went beyond 0.3.
-
-   ![0 0_Acc](https://user-images.githubusercontent.com/48019495/116076615-144e5700-a6b2-11eb-8695-bb816eaefae5.png)   ![0 3_Acc](https://user-images.githubusercontent.com/48019495/116076635-1b756500-a6b2-11eb-8b60-71f6cb651d3a.png)
-
-
-  ![0 6_Acc](https://user-images.githubusercontent.com/48019495/116076674-2b8d4480-a6b2-11eb-944c-20e805bbd15a.png)  ![0 9_Acc](https://user-images.githubusercontent.com/48019495/116076724-3c3dba80-a6b2-11eb-9e67-185c4b06ba8a.png)
-
-
- 2. Accuracy: Model gave the best accuracy at the dropout rate 0.3. After which the accuracy decreased beyond p = 0.3.
-
-![Accuracy](https://user-images.githubusercontent.com/48019495/116076803-57a8c580-a6b2-11eb-874d-a6b91cbd3000.png)
-
-3. Precision: Highest value for precision was observed at p = 0.3 which was equal to 0.9843. It is observed there is a sudden drop in the precision for dropout value 0.8 to 0.9 which was equal to 0.116. 
-
-![Precision](https://user-images.githubusercontent.com/48019495/116076908-7b6c0b80-a6b2-11eb-9575-12cac36b9d8d.png)
-
-4. Recall: Highest Recall was observed at the dropout rate of 0.3 which is equal to 0.9757.
-
-![Recall](https://user-images.githubusercontent.com/48019495/116076967-8d4dae80-a6b2-11eb-8dad-14f2399158f2.png)
-
-5. Loss: Lowest value for loss was obtained at p = 0.3 which was equal to 0.0697.
-
-
-![Loss](https://user-images.githubusercontent.com/48019495/116076843-65f6e180-a6b2-11eb-9070-1f7f7b747a19.png)
-
-6.  ROC-AUC: Highest value of ROC-AUC was obtained when no dropout was applied on the model. Since, the rest of the parameters have their optimum values at p = 0.3 and also the ROC-AUC of dropout rate 0.3 is quite close to p = 0.0 it would be the best approach to use a dropout rate of 0.3.
-
-![ROC-AUC](https://user-images.githubusercontent.com/48019495/116077144-c423c480-a6b2-11eb-98a7-d406ba6d04f5.png)
