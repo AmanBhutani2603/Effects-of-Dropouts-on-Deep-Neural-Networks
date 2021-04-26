@@ -40,8 +40,22 @@ After conducting the above experiments following are the results on which we rea
 
 3. When the models are trained with and without dropout for the same number of steps but with a varying batch size and epochs adjusted according to it, even though the accuracy in case of models with dropout is lower than the other, it is observed that the jump in the accuracy with increase in batch size is greater in the case of models with dropout.
 
+Accuracy for LENET - 5 architecture without Dropout for varying Batch Sizes
+
+![bs1](https://user-images.githubusercontent.com/48019495/116078450-3ea11400-a6b4-11eb-9c60-c82334ca4dce.png)
+
+Accuracy for LENET - 5 architecture with 0.3 Dropout Rate for varying Batch Sizes
+
+![bs2](https://user-images.githubusercontent.com/48019495/116078470-4660b880-a6b4-11eb-9463-ee9ad6ff3b61.png)
+
+
 4. In case of Text Classification it was observed that the model was very complex for the dataset chosen and therefore without dropout the model was overfitting the dataset and gave the best accuracy and the fit when most of the neurons were lost at very high dropout rates. In such cases applying dropouts might not be a remedy towards over fitting as the model should be made less complex in terms of its architecture according to the dataset.
 
 5. On studying the effects on feature learning it was observed that given a model adheres to our assumptions it was evident from the explanations of the surrogate models that as the dropouts were increasing the interpretability of the model was increasing in the case of both CIFAR-10 and MNIST.
+
+  Mathematical Presentation: 
+  
+ ![Capture321](https://user-images.githubusercontent.com/48019495/116080118-4cf02f80-a6b6-11eb-8722-2facf53a7f67.PNG)
+
 
 
