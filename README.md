@@ -1,1 +1,2 @@
-#Effects of Dropouts on Neural Networks
+**Effects of Dropouts on Neural Networks**
+
